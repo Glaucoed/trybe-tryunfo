@@ -12,7 +12,7 @@ class App extends React.Component {
     cardRare: '',
     cardTrunfo: true,
     // hasTrunfo: true,
-    isSaveButtonDisabled: true,
+    isSaveButtonDisabled: false,
   };
 
   onInputChange = () => {
