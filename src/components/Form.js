@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Form extends Component {
   render() {
+    const { cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      // hasTrunfo,
+      isSaveButtonDisabled,
+      onInputChange,
+      onSaveButtonClick,
+    } = this.props;
+
     return (
       <form>
         <div>
@@ -10,10 +25,10 @@ export default class Form extends Component {
             <input
               data-testid="name-input"
               id="name-id"
-              name="name"
+              name="cardName"
               type="text"
-              value="{valorDoEstateSemApas}"
-              onChange="{funcaoDoComponentePai}"
+              value={ cardName }
+              onChange={ onInputChange }
             />
           </label>
         </div>
@@ -23,10 +38,10 @@ export default class Form extends Component {
             <textarea
               data-testid="description-input"
               id="description-id"
-              name="description"
+              name="cardDescription"
               type="textarea"
-              value="{valorDoEstateSemApas}"
-              onChange="{funcaoDoComponentePai}"
+              value={ cardDescription }
+              onChange={ onInputChange }
               rows="5"
               cols="33"
             />
@@ -38,10 +53,10 @@ export default class Form extends Component {
             <input
               data-testid="attr1-input"
               id="attr1-id"
-              name="attr1"
+              name="cardAttr1"
               type="number"
-              value="{valorDoEstateSemApas}"
-              onChange="{funcaoDoComponentePai}"
+              value={ cardAttr1 }
+              onChange={ onInputChange }
             />
           </label>
         </div>
@@ -51,10 +66,10 @@ export default class Form extends Component {
             <input
               data-testid="attr2-input"
               id="attr2-id"
-              name="attr2"
+              name="cardAttr2"
               type="number"
-              value="{valorDoEstateSemApas}"
-              onChange="{funcaoDoComponentePai}"
+              value={ cardAttr2 }
+              onChange={ onInputChange }
             />
           </label>
         </div>
@@ -64,10 +79,10 @@ export default class Form extends Component {
             <input
               data-testid="attr3-input"
               id="attr3-id"
-              name="attr3"
+              name="cardAttr3"
               type="number"
-              value="{valorDoEstateSemApas}"
-              onChange="{funcaoDoComponentePai}"
+              value={ cardAttr3 }
+              onChange={ onInputChange }
             />
           </label>
         </div>
@@ -77,10 +92,10 @@ export default class Form extends Component {
             <input
               data-testid="image-input"
               id="image-id"
-              name="image"
+              name="cardImage"
               type="text"
-              value="{valorDoEstateSemApas}"
-              onChange="{funcaoDoComponentePai}"
+              value={ cardImage }
+              onChange={ onInputChange }
             />
           </label>
         </div>
@@ -89,10 +104,10 @@ export default class Form extends Component {
             Seleciona a Raridade:
             <select
               data-testid="rare-input"
-              name="option"
+              name="cardRare"
               id="option-id"
-              value="{valorDoEstateSemApas}"
-              onChange="{funcaoDoComponentePai}"
+              value={ cardRare }
+              onChange={ onInputChange }
             >
               <option value="normal">normal</option>
               <option value="raro">raro</option>
@@ -105,16 +120,36 @@ export default class Form extends Component {
             <input
               data-testid="trunfo-input"
               type="checkbox"
-              name="agree"
+              checked="cardTrunfo"
+              name="cardTrunfo" // agree
               id="checkbox-id"
-              // value={ agree }
-              onChange="{funcaoDoComponentePai}"
+              value={ cardTrunfo }
+              onChange={ onInputChange }
             />
             Super Trunfo
           </label>
         </div>
-        <button type="button" data-testid="save-button">Salvar</button>
+        <button
+          type="button"
+          disabled={ isSaveButtonDisabled }
+          onClick={ onSaveButtonClick }
+          data-testid="save-button"
+        >
+          Salvar
+
+        </button>
       </form>
     );
   }
 }
+Form.propTypes = {
+  cardName: PropTypes.string,
+  cardDescription: PropTypes.string,
+  cardAttr1: PropTypes.number,
+  cardAttr2: PropTypes.number,
+  cardAttr3: PropTypes.number,
+  cardImage: PropTypes.string,
+  cardRare: PropTypes.string,
+  cardTrunfo: PropTypes.string,
+  isSaveButtonDisabled: PropTypes.string,
+}.isRequired;
