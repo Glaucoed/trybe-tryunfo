@@ -18,6 +18,7 @@ export default class Form extends Component {
     } = this.props;
 
     return (
+
       <form>
         <div>
           <label htmlFor="name-id">
@@ -131,7 +132,14 @@ export default class Form extends Component {
         <button
           type="button"
           disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
+          onClick={ () => onSaveButtonClick({ cardName,
+            cardDescription,
+            cardAttr1,
+            cardAttr2,
+            cardAttr3,
+            cardImage,
+            cardRare,
+            cardTrunfo }) }
           data-testid="save-button"
         >
           Salvar
