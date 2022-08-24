@@ -1,0 +1,30 @@
+.main{
+display: flex;
+justify-content: center;
+margin-top: 5%;
+}
+.preview{
+  width: 16%;
+  height: 300px;
+  margin-left: 8%;
+  background-color: rgb(85, 85, 88);
+  color: white;
+  text-align: center;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+ul{
+  list-style: none;
+}
+form div{
+  padding: 6px;
+}
+input{
+  margin-left: 10px;
+  border-radius: 4px;
+}
+textarea{
+  margin-left: 10px;
+  border-radius: 4px;
+
+}

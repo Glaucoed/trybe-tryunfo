@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import './App.css';
 
 class App extends React.Component {
   state = {
@@ -10,9 +11,9 @@ class App extends React.Component {
     cardAttr2: '',
     cardAttr3: '',
     cardImage: '',
-    cardRare: 'normal',
+    cardRare: '',
     cardTrunfo: false,
-    // hasTrunfo: true,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
     data: [],
   };
@@ -70,6 +71,11 @@ class App extends React.Component {
     });
   };
 
+  verificaCardTrunfo = () => {
+    const { data } = this.state;
+    data.some(({ cardTrunfo }) => cardTrunfo);
+  };
+
   onSaveButtonClick = (newState) => {
     this.setState((estadoAnterior) => ({
       data: [...estadoAnterior.data, newState],
@@ -81,8 +87,8 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
-      // hasTrunfo: true,
       isSaveButtonDisabled: true,
+      hasTrunfo: this.verificaCardTrunfo,
     }));
   };
 
@@ -97,34 +103,39 @@ class App extends React.Component {
       cardTrunfo,
       isSaveButtonDisabled,
       data,
+      hasTrunfo,
     } = this.state;
 
     return (
       <>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
+        <div className="main">
+          <Form
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
+            onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+            hasTrunfo={ hasTrunfo }
 
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
+          />
+
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+        </div>
         <h1>Todas as Cartas</h1>
         <ul>
           {

@@ -11,12 +11,11 @@ export default class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
     } = this.props;
-
     return (
 
       <form>
@@ -46,6 +45,7 @@ export default class Form extends Component {
               rows="5"
               cols="33"
             />
+
           </label>
         </div>
         <div>
@@ -117,17 +117,20 @@ export default class Form extends Component {
           </label>
         </div>
         <div>
-          <label htmlFor="checkbox-id">
-            <input
-              data-testid="trunfo-input"
-              type="checkbox"
-              checked={ cardTrunfo }
-              name="cardTrunfo"
-              id="checkbox-id"
-              onChange={ onInputChange }
-            />
-            Super Trunfo
-          </label>
+          { hasTrunfo
+            ? <p>Você já tem um Super Trunfo em seu baralho</p>
+            : (
+              <label htmlFor="checkbox-id">
+                <input
+                  data-testid="trunfo-input"
+                  type="checkbox"
+                  checked={ cardTrunfo }
+                  name="cardTrunfo"
+                  id="checkbox-id"
+                  onChange={ onInputChange }
+                />
+                Super Trunfo
+              </label>)}
         </div>
         <button
           type="button"
