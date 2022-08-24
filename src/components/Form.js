@@ -16,7 +16,7 @@ export default class Form extends Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
-    console.log(cardTrunfo);
+
     return (
       <form>
         <div>
@@ -123,7 +123,6 @@ export default class Form extends Component {
               checked={ cardTrunfo }
               name="cardTrunfo"
               id="checkbox-id"
-              value={ cardTrunfo }
               onChange={ onInputChange }
             />
             Super Trunfo
