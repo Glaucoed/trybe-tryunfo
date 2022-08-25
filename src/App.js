@@ -91,6 +91,20 @@ class App extends React.Component {
     });
   };
 
+  removeCard = (index) => {
+    const { data } = this.state;
+    data.slice();
+    const { cardTrunfo } = data[index];
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+
+    data.splice(index, 1);
+    this.setState({ data });
+  };
+
   render() {
     const { cardName,
       cardDescription,
@@ -138,12 +152,21 @@ class App extends React.Component {
         <h1>Todas as Cartas</h1>
         <ul>
           {
-            data.map((card) => (
+            data.map((card, index) => (
               <li key={ card.cardName }>
                 <Card
                   { ...card }
                 />
-              </li>))
+                <button
+                  data-testid="delete-button"
+                  onClick={ () => this.removeCard(index) }
+                  type="button"
+                >
+                  Excluir
+
+                </button>
+              </li>
+            ))
           }
 
         </ul>
