@@ -16,6 +16,7 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     data: [],
+    saveInputSearch: '',
   };
 
   onInputChange = ({ target }) => {
@@ -117,6 +118,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       data,
       hasTrunfo,
+      saveInputSearch,
     } = this.state;
 
     return (
@@ -150,8 +152,17 @@ class App extends React.Component {
           />
         </div>
         <h1>Todas as Cartas</h1>
+        <input
+          data-testid="name-filter"
+          id="busca"
+          name="saveInputSearch"
+          type="text"
+          value={ saveInputSearch }
+          onChange={ this.onInputChange }
+        />
+
         <ul>
-          {
+          {/* {
             data.map((card, index) => (
               <li key={ card.cardName }>
                 <Card
@@ -167,8 +178,26 @@ class App extends React.Component {
                 </button>
               </li>
             ))
-          }
+          } */}
 
+          {
+
+            data.filter((card) => (card.cardName.includes(saveInputSearch)))
+              .map((card, index) => (
+                <li key={ card.cardName }>
+                  <Card
+                    { ...card }
+                  />
+                  <button
+                    data-testid="delete-button"
+                    onClick={ () => this.removeCard(index) }
+                    type="button"
+                  >
+                    Excluir
+
+                  </button>
+                </li>))
+          }
         </ul>
       </>
     );
