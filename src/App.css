@@ -5,13 +5,26 @@ margin-top: 5%;
 }
 .preview{
   width: 16%;
-  height: 300px;
+  height: 435px;
   margin-left: 8%;
   background-color: rgb(85, 85, 88);
   color: white;
   text-align: center;
   margin-top: 5px;
   padding-top: 5px;
+  border-radius: 10px;
+
+}
+.preview h3{
+  height: 16px;
+  line-height: 20px;
+  padding: 20px;
+
+}
+.preview img{
+width: 200px;
+border-radius: 10px;
+
 }
 ul{
   list-style: none;

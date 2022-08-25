@@ -71,11 +71,6 @@ class App extends React.Component {
     });
   };
 
-  verificaCardTrunfo = () => {
-    const { data } = this.state;
-    data.some(({ cardTrunfo }) => cardTrunfo);
-  };
-
   onSaveButtonClick = (newState) => {
     this.setState((estadoAnterior) => ({
       data: [...estadoAnterior.data, newState],
@@ -88,8 +83,12 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
-      hasTrunfo: this.verificaCardTrunfo,
-    }));
+    }), () => {
+      const { data } = this.state;
+      this.setState({
+        hasTrunfo: data.some(({ cardTrunfo }) => cardTrunfo),
+      });
+    });
   };
 
   render() {
