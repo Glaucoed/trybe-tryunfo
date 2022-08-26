@@ -86,6 +86,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      findSuperTrunfo: false,
 
     }), () => {
       const { data } = this.state;
@@ -123,6 +124,7 @@ class App extends React.Component {
       hasTrunfo,
       saveInputSearch,
       optionSelect,
+      findSuperTrunfo,
     } = this.state;
 
     return (
@@ -161,6 +163,7 @@ class App extends React.Component {
           saveInputSearch={ saveInputSearch }
           onInputChange={ this.onInputChange }
           optionSelect={ optionSelect }
+          findSuperTrunfo={ findSuperTrunfo }
         />
 
         <ul>
@@ -169,6 +172,9 @@ class App extends React.Component {
               .filter((card) => card.cardName.includes(saveInputSearch))
               .filter((card) => (optionSelect
                 ? card.cardRare === optionSelect
+                : card))
+              .filter((card) => (findSuperTrunfo
+                ? card.cardTrunfo
                 : card))
               .map((card, index) => (
                 <li key={ card.cardName }>

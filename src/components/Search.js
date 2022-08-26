@@ -6,7 +6,7 @@ export default class Search extends Component {
     const { saveInputSearch,
       onInputChange,
       optionSelect,
-
+      findSuperTrunfo,
     } = this.props;
     return (
       <>
@@ -14,12 +14,14 @@ export default class Search extends Component {
           <label htmlFor="busca-id">
             Filtro de Busca:
             <input
+              placeholder="busque a carta desejada"
               data-testid="name-filter"
               id="busca-id"
               name="saveInputSearch"
               type="text"
               value={ saveInputSearch }
               onChange={ onInputChange }
+              disabled={ findSuperTrunfo }
             />
           </label>
         </div>
@@ -33,6 +35,7 @@ export default class Search extends Component {
               id="option-id"
               value={ optionSelect }
               onChange={ onInputChange }
+              disabled={ findSuperTrunfo }
 
             >
               <option value="">todas</option>
@@ -40,6 +43,19 @@ export default class Search extends Component {
               <option value="raro">raro</option>
               <option value="muito raro">muito raro</option>
             </select>
+          </label>
+        </div>
+        <div>
+          <label htmlFor="find-id">
+            <input
+              data-testid="trunfo-filter"
+              type="checkbox"
+              checked={ findSuperTrunfo }
+              name="findSuperTrunfo"
+              id="find-id"
+              onChange={ onInputChange }
+            />
+            Super Trunfo
           </label>
         </div>
       </>
