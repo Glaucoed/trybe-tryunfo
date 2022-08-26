@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import Search from './components/Search';
 // import './App.css';
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
     data: [],
     saveInputSearch: '',
+    optionSelect: '',
   };
 
   onInputChange = ({ target }) => {
@@ -84,6 +86,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+
     }), () => {
       const { data } = this.state;
       this.setState({
@@ -119,6 +122,7 @@ class App extends React.Component {
       data,
       hasTrunfo,
       saveInputSearch,
+      optionSelect,
     } = this.state;
 
     return (
@@ -152,37 +156,20 @@ class App extends React.Component {
           />
         </div>
         <h1>Todas as Cartas</h1>
-        <input
-          data-testid="name-filter"
-          id="busca"
-          name="saveInputSearch"
-          type="text"
-          value={ saveInputSearch }
-          onChange={ this.onInputChange }
+
+        <Search
+          saveInputSearch={ saveInputSearch }
+          onInputChange={ this.onInputChange }
+          optionSelect={ optionSelect }
         />
 
         <ul>
-          {/* {
-            data.map((card, index) => (
-              <li key={ card.cardName }>
-                <Card
-                  { ...card }
-                />
-                <button
-                  data-testid="delete-button"
-                  onClick={ () => this.removeCard(index) }
-                  type="button"
-                >
-                  Excluir
-
-                </button>
-              </li>
-            ))
-          } */}
-
           {
-
-            data.filter((card) => (card.cardName.includes(saveInputSearch)))
+            data
+              .filter((card) => card.cardName.includes(saveInputSearch))
+              .filter((card) => (optionSelect
+                ? card.cardRare === optionSelect
+                : card))
               .map((card, index) => (
                 <li key={ card.cardName }>
                   <Card
@@ -198,6 +185,7 @@ class App extends React.Component {
                   </button>
                 </li>))
           }
+
         </ul>
       </>
     );
